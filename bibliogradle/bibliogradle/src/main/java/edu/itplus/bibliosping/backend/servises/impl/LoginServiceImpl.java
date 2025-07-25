@@ -3,7 +3,7 @@ package edu.itplus.bibliosping.backend.servises.impl;
 import edu.itplus.bibliosping.backend.model.User;
 import edu.itplus.bibliosping.backend.repository.UserDAO;
 import edu.itplus.bibliosping.backend.servises.LoginService;
-import edu.itplus.bibliosping.backend.utils.PasswordHasher;
+import edu.itplus.bibliosping.backend.utils.impl.PassworEncrypterSha265;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class LoginServiceImpl implements LoginService {
     private UserDAO userDAO;
 
     @Autowired
-    private PasswordHasher passwordHasher;
+    private PassworEncrypterSha265 passwordHasher;
 
     @Override
     public boolean login(User user) {
