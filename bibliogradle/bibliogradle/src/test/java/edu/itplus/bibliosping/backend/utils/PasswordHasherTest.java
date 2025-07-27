@@ -1,6 +1,6 @@
 package edu.itplus.bibliosping.backend.utils;
 
-import edu.itplus.bibliosping.backend.utils.impl.PassworEncrypterSha265;
+import edu.itplus.bibliosping.backend.utils.impl.PasswordEncrypterSha256;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,7 +18,7 @@ class PasswordHasherTest {
     @ValueSource(strings = {"hello","password12345","test@123"})
     void hashPassword_givenDifferentInput_shouldReturnDifferentHash(String input) {
         // Arrange
-        PassworEncrypterSha265 sut = new PassworEncrypterSha265();
+        PasswordEncrypterSha256 sut = new PasswordEncrypterSha256();
         String password = "abcde";
         String salt = "44a3415d-65f1-44c8-aa7f-c62ed4c50675";
 
@@ -39,7 +39,7 @@ class PasswordHasherTest {
     })
     void hashPassword_givenPasswordAndSalt_shouldReturnExpectedHash(String password, String salt, String expectedHash) {
         // Arrange
-        PassworEncrypterSha265 sut = new PassworEncrypterSha265();
+        PasswordEncrypterSha256 sut = new PasswordEncrypterSha256();
         // Act
         String actualHash = sut.hashPassword(password, salt);
         // Assert

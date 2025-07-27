@@ -6,19 +6,33 @@ import edu.itplus.bibliosping.backend.repository.UserDAO;
 import java.util.List;
 
 public class TestUserDAO implements UserDAO {
-    private User user;
+    public static User nonDbUser;
+
+    public static User dbuser;
+
+    private String lastSerachUser;
+    public String getLastSerachUser() {
+        return lastSerachUser;
+    }
+
     public TestUserDAO() {
-        this.user = new User();
-        user.setPassword("123");
-        user.setUsername("Psitike");
-        user.setId(1L);
-        user.setUuid("salt");
+        this.nonDbUser = new User();
+        nonDbUser.setPassword("123");
+        nonDbUser.setUsername("Psitike");
+        nonDbUser.setId(1L);
+        nonDbUser.setUuid("salt");
+
+        dbuser = new User();
+        dbuser.setPassword(TestPasswordDAO.hashedPassword);
+        dbuser.setUsername("Psitike");
+        dbuser.setId(1L);
+        dbuser.setUuid(TestPasswordDAO.salt);
     }
 
     @Override
     public User findByID(Long id) {
-        if (user.getId().equals(id)){
-            return user;
+        if (nonDbUser.getId().equals(id)){
+            return dbuser;
         }else {
             return null;
         }
@@ -26,8 +40,9 @@ public class TestUserDAO implements UserDAO {
 
     @Override
     public User findbyUsername(String username) {
-        if (user.getUsername().equals(username)){
-            return user;
+        lastSerachUser = username;
+        if (nonDbUser.getUsername().equals(username)){
+            return dbuser;
         }else {
             return null;
         }
@@ -50,6 +65,6 @@ public class TestUserDAO implements UserDAO {
 
     @Override
     public List<User> findAll() {
-        return List.of(new User[]{user});
+        return List.of(new User[]{dbuser});
     }
 }
