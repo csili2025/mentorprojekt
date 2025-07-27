@@ -23,10 +23,10 @@ public class TestUserDAO implements UserDAO {
         nonDbUser.setUuid("salt");
 
         dbuser = new User();
-        dbuser.setPassword(TestPasswordDAO.hashedPassword);
+        dbuser.setPassword(TestPasswordEncrypter.hashedPassword);
         dbuser.setUsername("Psitike");
         dbuser.setId(1L);
-        dbuser.setUuid(TestPasswordDAO.salt);
+        dbuser.setUuid(TestPasswordEncrypter.salt);
     }
 
     @Override

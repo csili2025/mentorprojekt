@@ -13,6 +13,7 @@ public class ComponentProvider {
     @Bean
     @Scope("prototype")
     public Logger getLogger(InjectionPoint ip) {
+
         return LoggerFactory.getLogger(ip.getField().getDeclaringClass());
     }
 }
