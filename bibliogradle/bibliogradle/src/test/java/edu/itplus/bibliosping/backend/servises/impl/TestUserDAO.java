@@ -7,7 +7,6 @@ import java.util.List;
 
 public class TestUserDAO implements UserDAO {
     public static User nonDbUser;
-
     public static User dbuser;
 
     private String lastSerachUser;
