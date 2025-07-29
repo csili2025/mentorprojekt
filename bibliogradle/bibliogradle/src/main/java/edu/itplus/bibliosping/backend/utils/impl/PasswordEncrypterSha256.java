@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 @Component
-@Profile("JDBC")
 public class PasswordEncrypterSha256 implements PasswordEncrypter {
     public String hashPassword(String password, String salt) {
        try {
